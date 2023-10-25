@@ -1,0 +1,101 @@
+﻿@using WebApplication8.Models
+@model List<User>
+
+<style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    
+    /* Zebra striping */
+    
+    tr:nth-of-type(odd) {
+      background: #f4f4f4;
+    }
+    
+    tr:nth-of-type(even) {
+      background: #fff;
+    }
+    
+    th {
+      background: #782f40;
+      color: #ffffff;
+      font-weight: 300;
+    }
+    
+    td,
+    th {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+    
+    td:nth-of-type(1) {
+      font-weight: 500 !important;
+    }
+    
+    td {
+      font-family: 'Roboto', sans-serif !important;
+      font-weight: 300;
+      line-height: 20px;
+    }
+    
+    span {
+      font-style: italic
+    }
+   
+</style>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<h2>Вітаємо @ViewBag.Login у спільноті!</h2>
+
+@if (Model.Any())
+{
+    <table id="sort" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th class="col">Name
+                </th>
+                <th class="col">Age
+                </th>
+                <th class="col">Region
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (User user in Model)
+            {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Age</td>
+                    <td>@user.Region.Name</td>
+                </tr>
+            }
+            </tbody>
+            </table>
+
+}
+
+<div style="display: flex; justify-content: center;" >
+    <img src="https://media.tenor.com/makOt5I5C0wAAAAd/gorilla-spin-gorilla.gif"/>
+</div>
+
+<script>
+$(document).ready(function() {
+   $("#sort").DataTable({
+      columnDefs : [
+    { type : 'date', targets : [3] }
+],  
+   });
+});
+
+$().DataTables()
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.10.15/sorting/stringMonthYear.js"></script>
