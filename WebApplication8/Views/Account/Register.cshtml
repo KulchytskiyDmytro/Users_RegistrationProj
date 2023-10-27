@@ -31,7 +31,7 @@
         </div>
         
         <div class="form-group">
-            @Html.LabelFor(model => model.RegionId, new { @class = "control-label col-md-2" })
+            <b class="control-label col-md-2">Region</b>
             <div class="col-md-10">
                 @Html.DropDownListFor(model => model.RegionId, ((ViewBag.Regions as List<Region>) ?? new List<Region>()).Select(r=> new SelectListItem
                 {
